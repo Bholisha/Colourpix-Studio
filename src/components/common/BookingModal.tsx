@@ -26,7 +26,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [shootType, setShootType] = useState<string>('day-shoot');
 
-  // Real Current System Date (Today: August 7, 2026)
+  // Real Current System Date
   const today = new Date(2026, 7, 7); 
   
   // Month & Calendar Navigation States
@@ -129,9 +129,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
     const chosenSetObj = STUDIO_ROOMS.find(s => s.id === selectedSet);
     const formattedDate = `${selectedDayNumber} ${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
 
+    const pkgDetails = selectedPackage?.name ? `📦 Selected Package: ${selectedPackage.name}\n` : '';
+
     const message = `Hi ColourPix Studio! I want to confirm my booking:
-    
-👤 Name: ${name}
+
+${pkgDetails}👤 Name: ${name}
 📞 Phone: ${phone}
 ✉️ Email: ${email}
 
@@ -193,7 +195,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
         {currentStep === 1 && (
           <div className="space-y-4">
             <div>
-              <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">Choose Shoot Type</h2>
+              <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                Choose Shoot Type {selectedPackage?.name ? `(${selectedPackage.name})` : ''}
+              </h2>
               <p className="text-xs text-slate-400 mt-0.5">Pick session type. All options include professional gear and tech crew.</p>
             </div>
 
