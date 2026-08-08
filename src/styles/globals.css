@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #0B0C10;
+  --color-obsidian-card: #12141C;
+  --color-obsidian-border: #1F2430;
+  --color-brand-cyan: #4DEEEA;
+  --color-brand-blue: #0066FF;
+  --background-image-neon-gradient: linear-gradient(135deg, #0066FF 0%, #4DEEEA 100%);
+  --shadow-neon-glow: 0 0 25px rgba(77, 238, 234, 0.3);
+}
+
+/* Full Width Body Setup (No Side Margins or Vertical Lines) */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--color-obsidian);
+  color: #f1f5f9;
+}
+
+/* Wide Glass Panel without restrictive fixed borders */
+.glass-panel-wide {
+  background: rgba(18, 20, 28, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--color-obsidian-border);
+  border-radius: 1.5rem;
+}
+/* Film Reel Infinite Marquee Animation */
+@keyframes film-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-film-reel {
+  display: flex;
+  width: max-content;
+  animation: film-marquee 25s linear infinite;
+}
+
+.animate-film-reel:hover {
+  animation-play-state: paused;
+}
