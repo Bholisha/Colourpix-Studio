@@ -26,10 +26,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [shootType, setShootType] = useState<string>('day-shoot');
 
-  // Real Current System Date
   const today = new Date(2026, 7, 7); 
   
-  // Month & Calendar Navigation States
   const [currentDate, setCurrentDate] = useState<Date>(new Date(2026, 7, 1));
   const [selectedDayNumber, setSelectedDayNumber] = useState<number>(today.getDate());
   const [selectedSlot, setSelectedSlot] = useState<string>('10:00 AM');
@@ -37,14 +35,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
   const [selectedSet, setSelectedSet] = useState<string>(STUDIO_ROOMS[0]?.id || 'set-1');
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   
-  // User Details
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
 
   if (!isOpen) return null;
 
-  // Handle Close & Reset Stepper back to Step 1 (Shoot Type)
   const handleModalClose = () => {
     setCurrentStep(1);
     onClose();
@@ -85,7 +81,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
     }
   ];
 
-  // Complete 24-Hour Time Slots List
   const TWENTY_FOUR_HOUR_SLOTS = [
     '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM',
     '04:00 PM', '05:00 PM', '06:00 PM', '07:00 PM', '08:00 PM', '09:00 PM', '10:00 PM', '11:00 PM',
@@ -151,7 +146,6 @@ ${pkgDetails}👤 Name: ${name}
     <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto font-sans">
       <div className="glass-panel max-w-3xl w-full p-5 sm:p-7 relative space-y-5 border-brand-cyan/40 bg-obsidian-card my-4 rounded-2xl shadow-2xl">
         
-        {/* Close Button */}
         <button 
           onClick={handleModalClose}
           className="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors z-20"
@@ -159,7 +153,6 @@ ${pkgDetails}👤 Name: ${name}
           <X className="w-5 h-5" />
         </button>
 
-        {/* STEP PROGRESS BAR */}
         <div className="flex items-center justify-between border-b border-obsidian-border pb-4 overflow-x-auto gap-2">
           {[
             { step: 1, label: 'Shoot Type' },
@@ -191,7 +184,6 @@ ${pkgDetails}👤 Name: ${name}
           })}
         </div>
 
-        {/* STEP 1: SHOOT TYPE */}
         {currentStep === 1 && (
           <div className="space-y-4">
             <div>
@@ -236,7 +228,6 @@ ${pkgDetails}👤 Name: ${name}
           </div>
         )}
 
-        {/* STEP 2: MONTH CALENDAR & TIME SLOTS */}
         {currentStep === 2 && (
           <div className="space-y-5">
             <div>
@@ -244,7 +235,6 @@ ${pkgDetails}👤 Name: ${name}
               <p className="text-xs text-slate-400 mt-0.5">24/7 Studio Operations · Select any date & hour from today onwards.</p>
             </div>
 
-            {/* CALENDAR */}
             <div className="space-y-3 bg-obsidian/60 p-4 rounded-2xl border border-obsidian-border">
               <div className="flex items-center justify-between mb-2">
                 <button 
@@ -309,7 +299,6 @@ ${pkgDetails}👤 Name: ${name}
               </div>
             </div>
 
-            {/* TIME SLOTS */}
             <div className="space-y-2">
               <h3 className="text-sm font-black text-white">Select Time Slot (24 Hours)</h3>
               <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2 max-h-48 overflow-y-auto p-1 border border-obsidian-border/50 rounded-xl bg-obsidian/40">
@@ -337,7 +326,6 @@ ${pkgDetails}👤 Name: ${name}
           </div>
         )}
 
-        {/* STEP 3: STUDIO SET */}
         {currentStep === 3 && (
           <div className="space-y-4">
             <div>
@@ -383,7 +371,6 @@ ${pkgDetails}👤 Name: ${name}
           </div>
         )}
 
-        {/* STEP 4: ADD-ONS */}
         {currentStep === 4 && (
           <div className="space-y-4">
             <div>
@@ -424,7 +411,6 @@ ${pkgDetails}👤 Name: ${name}
           </div>
         )}
 
-        {/* STEP 5: YOUR DETAILS */}
         {currentStep === 5 && (
           <form onSubmit={handleFinalSubmit} className="space-y-4">
             <div>
@@ -479,7 +465,6 @@ ${pkgDetails}👤 Name: ${name}
               </div>
             </div>
 
-            {/* Navigation for Step 5 */}
             <div className="flex items-center justify-between pt-3 border-t border-obsidian-border gap-3">
               <button
                 type="button"
@@ -501,7 +486,6 @@ ${pkgDetails}👤 Name: ${name}
           </form>
         )}
 
-        {/* BOTTOM WIZARD CONTROLS (For Steps 1 to 4) */}
         {currentStep < 5 && (
           <div className="flex items-center justify-between pt-4 border-t border-obsidian-border">
             {currentStep > 1 ? (
